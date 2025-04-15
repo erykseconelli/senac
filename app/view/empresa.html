@@ -1,0 +1,56 @@
+{% extends "main.html" %}
+
+{% block main %}
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Início</a></li>
+                <li class="breadcrumb-item"><a href="/empresa/lista">Lista de empresas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cadastro e edição de empresas</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class=row>
+        <div class="alert alert-warning" role="alert" id="mensagem">
+            Todos os campos com * são obrigatórios
+          </div>
+        <div class="col-12">
+            <form name="form" id="form" action="/empresa/lista" method="post" autocomplete="on">
+                <div class="card">
+                    <div class="card-header">
+                        Formulario Empresa
+                    </div>
+                    <p class="card-text">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="empresa" name="empresa" placeholder="Digite Nome da Empresa">
+                        <label for="nome">Digite Nome da Empresa </label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Digite seu CNPJ">
+                        <label for="cpf">Digite seu CNPJ</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite Seu Endereço">
+                        <label for="email">Digite Seu Endereço</label>
+                    </div>
+                        <br>
+                    <button type="button" class="btn btn-secondary" id="salvar">Complete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+{% include "script.html" %}
+<script src="/js/empresa.js"></script>
+<script src="/js/ControlAlert.js"></script>
+{% endblock %}

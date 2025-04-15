@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include "css.html" %}
+    <title>{{ titulo }}</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        {% include "menu.html" %}
+    </div>
+    <div class="row">
+        {% block main %}
+        
+        {% endblock %}
+    </div>
+</div>
+
+    {% block script %}
+        {% include "script.html" %}
+    {% endblock %}
+</body>
+</html>
