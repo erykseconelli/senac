@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\database\builder\DeleteQuery;
 use app\database\builder\InsertQuery;
 use app\database\builder\UpdateQuery;
 
@@ -58,6 +59,22 @@ class ControllerUser extends Base
             ], 200);
         } catch (\Exception $e) {
             throw new \Exception("Restrição: " . $e->getMessage(), 1);
+        }
+    }
+    public function delete ($request, $response) 
+    {
+        try {
+            $TemplateData = [
+                'acao' => 'x',
+                'titulo' => 'Delete de Usuários'
+            ];
+            return $this->getTwig()
+                ->render($response, $this->setView('user'), $TemplateData)
+                ->withHeader('Content-Type', 'text/html')
+                ->withStatus(200);
+            
+        } catch (\Exception $e) {
+            return throw new \Exception("Restrição: ". $e->getMessage(),1);
         }
     }
 }

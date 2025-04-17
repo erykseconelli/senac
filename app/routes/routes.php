@@ -13,6 +13,7 @@ $app->group('/usuario', function (RouteCollectorProxy $group) {
     $group->get('/lista', ControllerUser::class . ':lista');
     $group->get('/cadastro', ControllerUser::class . ':cadastro');
     $group->post('/insert', ControllerUser::class . ':insert');
+    $group->get('/alterar/{id}', ControllerUser::class . ':alterar');
 });
 
 // Define rotas da Empresa
