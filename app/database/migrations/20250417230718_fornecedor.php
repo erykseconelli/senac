@@ -10,9 +10,9 @@ final class Fornecedor extends AbstractMigration
     {
         $table = $this->table('users', ['id' => false, 'primary_ke'=> ['id']]);
         $table->addColumn('id', 'biginteger', ['identity' => true, 'null' => false])
-            ->addColumn('empresa', 'text', ['null' => true])
+            ->addColumn('nome', 'text', ['null' => true])
             ->addColumn('cnpj', 'text', ['null' => true])
-            ->addColumn('endereco', 'text', ['null' => true])
+            ->addColumn('ie', 'text', ['null' => true])
             ->addColumn('ativo', 'boolean', ['null' => true, 'default' => false])
             ->addColumn('data_cadastro', 'datetime', ['null' => true, 'default' => 'CURRENT_TIMESTAMP'])
             ->addColumn('data_atualizacao', 'datetime', ['null' => true, 'default' => 'CURRENT_TIMESTAMP'])
