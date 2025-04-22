@@ -45,40 +45,39 @@ class DeleteQuery
     private function createQuery()
     {
         #se a tabela não foi definida, lança uma execução
-        if ($this->table) 
-        {
-            throw new \Exception("a consulta precisa invocar o método delete.");
+        if (!$this->table) {
+            throw new \Exception("A consulta precisa invocar o método table.");
         }
         #inicia a construção da query
         $query = '';
         $query = "delete from {$this->table}";
         #se houver condições WHERE, adiciona-as à query
-        $query .=(isset($this->whre) and (count($this->where) > 0)) ? ' where ' . implode('', $this->where) :'';
+        $query .= (isset($this->where) and (count($this->where) > 0)) ? ' where ' . implode('', $this->where) : '';
         #retorna a string da query montada
         return $query;
-}
-
-public function executeQuery($query)
-{
-    #obtém a conexão com o banco de dados via PDO
-    $connection = Connection::connect();
-    #prapara a query para evitar a SQL Injection
-    $prepare = $connection->prepare($query);
-    #executa a query com os valores vinculados(binds)
-    return $prepare->execute($this->binds ??[]);
-}
-#método principal que monta e executa a query DELETE
-#true em caso de sucesso, ou lança exceção se falhar
-public function delete()
-{
-    #cria a query completa
-    $query = $this->createQuery();
-    try{
-        #tenta executar a query
-        return $this->executeQuery($query);
-    } catch (\PDOException $e){
-        #captura exceçôes do PDO e lança uma nova exceção personalizade
-        throw new \Exception("Restrição: {$e->getMessage()}");
     }
-}
+
+    public function executeQuery($query)
+    {
+        #obtém a conexão com o banco de dados via PDO
+        $connection = Connection::connect();
+        #prapara a query para evitar a SQL Injection
+        $prepare = $connection->prepare($query);
+        #executa a query com os valores vinculados(binds)
+        return $prepare->execute($this->binds ?? []);
+    }
+    #método principal que monta e executa a query DELETE
+    #true em caso de sucesso, ou lança exceção se falhar
+    public function delete()
+    {
+        #cria a query completa
+        $query = $this->createQuery();
+        try {
+            #tenta executar a query
+            return $this->executeQuery($query);
+        } catch (\PDOException $e) {
+            #captura exceçôes do PDO e lança uma nova exceção personalizade
+            throw new \Exception("Restrição: {$e->getMessage()}");
+        }
+    }
 }

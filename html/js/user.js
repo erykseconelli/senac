@@ -1,9 +1,8 @@
 const Save = document.getElementById("salvar");
-
 async function Insert() {
-try {
+    try {
         const form = document.getElementById("form");
-        const formData = new FormData (form);
+        const formData = new FormData(form);
         const options = {
             method: "POST",
             body: formData,
@@ -15,8 +14,21 @@ try {
     }
 }
 
+async function Deletar(id) {
+    const form = document.getElementById("form");
+    const formData = new FormData(form);
+    const options = {
+        method: 'POST',
+        body: formData,
+    }
+    const response = await fetch('/usuario/deletar', options);
+    return await response.json();
+}
+
+
+
 Save.addEventListener("click", async () => {
-    const response = await Insert ();
+    const response = await Insert();
 
     if (response.status) {
         await ControlAlert.SetId('mensagem').Primary("Salvando os Dados...", 2000);
