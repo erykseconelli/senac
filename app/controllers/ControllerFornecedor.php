@@ -64,11 +64,11 @@ class ControllerFornecedor extends Base
     {
         try {
             $form = $request->getParsedBody();
-            $IsDelete = DeleteQuery::table("empresa")->where("id", '=', $form['id'])->delete();
+            $IsDelete = DeleteQuery::table("fornecedor")->where("id", '=', $form['id'])->delete();
             if ($IsDelete) {
                 return $this->Send($response, [
                     'status' => true,
-                    'msg' => 'Empresa foi deletado',
+                    'msg' => 'Fornecedor foi deletado',
                 ], 200);
             }
         } catch (\Exception $e) {
@@ -80,11 +80,11 @@ class ControllerFornecedor extends Base
         try {
             $id = $args['id'];
             $TemplateData = [
-                'titulo' => 'Lista de Empresas',
+                'titulo' => 'Lista de Forncedores',
                 'id' => $id
             ];
             return $this->getTwig()
-                ->render($response, $this->setView('empresa'), $TemplateData)
+                ->render($response, $this->setView('fornecedor'), $TemplateData)
                 ->withHeader('Content-Type', 'text/html')
                 ->withStatus(200);
         } catch (\Exception $e) {
@@ -92,19 +92,5 @@ class ControllerFornecedor extends Base
         };
     }
 
-    public function delete($request, $response)
-    {
-        try {
-            $form = $request->getParsedBody();
-            $IsDelete = DeleteQuery::table("empresa")->where("id", '=', $form['id'])->delete();
-            if ($IsDelete) {
-                return $this->Send($response, [
-                    'status' => true,
-                    'msg' => 'Empresa foi deletado',
-                ], 200);
-            }
-        } catch (\Exception $e) {
-            throw new \Exception($e->getMessage(), 1);
-        }
-    }
+    
 }

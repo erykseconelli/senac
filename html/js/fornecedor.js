@@ -33,7 +33,7 @@ async function Deletar(id) {
         method: 'POST',
         body: formData,
     }
-    const response = await fetch('/usuario/deletar', options);
+    const response = await fetch('/fornecedor/deletar', options);
     return await response.json();
 }
 
@@ -45,7 +45,7 @@ Save.addEventListener("click", async () => {
     if (response.status) {
         await ControlAlert.SetId('mensagem').Primary("Salvando os Dados...", 2000);
         await ControlAlert.SetId('mensagem').Sucess('Cadastro realizado!', 1000);
-        ControlAlert.IsRedirect('/usuario/lista', 2000);
+        ControlAlert.IsRedirect('/fornecedor/lista', 2000);
     } else {
         ControlAlert.SetId('mensagem').danger(response.msg)
     }
