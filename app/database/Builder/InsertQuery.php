@@ -1,6 +1,6 @@
 <?php
 namespace app\database\builder;
-use app\database\Connection; 
+use app\database\Connection;
 class InsertQuery
 {
     #Atributo tabela recebe o nome da tabela
@@ -28,7 +28,7 @@ class InsertQuery
             throw new \Exception("A consulta precisa dos dados para realizar a inserção.");
         }
         $query = '';
-        $query = "insert into {$this->table} (";+
+        $query = "insert into {$this->table} (";
         $query .= implode(',', array_keys($this->fieldsAndValues)) . ') values (';
         $query .= ':' . implode(',:', array_keys($this->fieldsAndValues)) . ');';
         return $query;
