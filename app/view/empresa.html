@@ -21,6 +21,7 @@
           </div>
         <div class="col-12">
             <form name="form" id="form" action="/empresa/lista" method="post" autocomplete="on">
+                <input type="hidden" name="id" id="id" value="{{id}}">
                 <div class="card">
                     <div class="card-header">
                         Formulario Empresa
@@ -42,6 +43,7 @@
                     </div>
                         <br>
                     <button type="button" class="btn btn-secondary" id="salvar">Complete</button>
+                    <button type="button" class="btn btn-danger" id="deletar" onclick="Deletar();">Deletar</button>
                 </div>
             </form>
         </div>
@@ -51,6 +53,6 @@
 
 {% block script %}
 {% include "script.html" %}
-<script src="/js/empresa.js"></script>
 <script src="/js/ControlAlert.js"></script>
+<script src="/js/empresa.js"></script>
 {% endblock %}

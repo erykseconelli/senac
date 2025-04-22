@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\database\builder\InsertQuery;
+use app\database\builder\DeleteQuery;
 
 class ControllerFornecedor extends Base
 {
@@ -58,4 +59,38 @@ class ControllerFornecedor extends Base
             throw new \Exception("Restrição: " . $e->getMessage(), 1);
         }
     }
+
+    public function deletar($request, $response)
+    {
+        try {
+            $form = $request->getParsedBody();
+            $IsDelete = DeleteQuery::table("fornecedor")->where("id", '=', $form['id'])->delete();
+            if ($IsDelete) {
+                return $this->Send($response, [
+                    'status' => true,
+                    'msg' => 'Fornecedor foi deletado',
+                ], 200);
+            }
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage(), 1);
+        }
+    }
+    public function alterar($request, $response, $args)
+    {
+        try {
+            $id = $args['id'];
+            $TemplateData = [
+                'titulo' => 'Lista de Forncedores',
+                'id' => $id
+            ];
+            return $this->getTwig()
+                ->render($response, $this->setView('fornecedor'), $TemplateData)
+                ->withHeader('Content-Type', 'text/html')
+                ->withStatus(200);
+        } catch (\Exception $e) {
+            throw new \Exception("Restrição: " . $e->getMessage(),);
+        };
+    }
+
+    
 }

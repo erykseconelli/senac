@@ -46,7 +46,7 @@ class ControllerUser extends Base
                 'email' => $form['email'],
                 'senha' => password_hash($form['senha'], PASSWORD_DEFAULT)
             ];
-            $IsSave = InsertQuery::table('users')->save($FieldsAndValues);
+            $IsSave = InsertQuery::table('user')->save($FieldsAndValues);
             if (! $IsSave) {
                 return $this->Send($response, [
                     'status' => false,
@@ -61,20 +61,35 @@ class ControllerUser extends Base
             throw new \Exception("Restrição: " . $e->getMessage(), 1);
         }
     }
-    public function delete ($request, $response) 
+    public function deletar($request, $response)
     {
         try {
+            $form = $request->getParsedBody();
+            $IsDelete = DeleteQuery::table("users")->where("id", '=', $form['id'])->delete();
+            if ($IsDelete) {
+                return $this->Send($response, [
+                    'status' => true,
+                    'msg' => 'Usuário foi deletado',
+                ], 200);
+            }
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage(), 1);
+        }
+    }
+    public function alterar($request, $response, $args)
+    {
+        try {
+            $id = $args['id'];
             $TemplateData = [
-                'acao' => 'x',
-                'titulo' => 'Delete de Usuários'
+                'titulo' => 'Lista de Usuários',
+                'id' => $id
             ];
             return $this->getTwig()
-                ->render($response, $this->setView('user'), $TemplateData)
+                ->render($response, $this->setView('users'), $TemplateData)
                 ->withHeader('Content-Type', 'text/html')
                 ->withStatus(200);
-            
         } catch (\Exception $e) {
-            return throw new \Exception("Restrição: ". $e->getMessage(),1);
-        }
+            throw new \Exception("Restrição: " . $e->getMessage(), );
+        };
     }
 }
