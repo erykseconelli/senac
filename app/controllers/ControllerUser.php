@@ -10,7 +10,7 @@ class ControllerUser extends Base
 {
     public function lista($request, $response)
     {
-        try {          
+        try {
             $TemplateData = [
                 'titulo' => 'Lista de Usuários',
             ];
@@ -29,7 +29,7 @@ class ControllerUser extends Base
                 'titulo' => 'Cadastro de Usuários',
             ];
             return $this->getTwig()
-                ->render($response, $this->setView('user'), $TemplateData)
+                ->render($response, $this->setView('users'), $TemplateData)
                 ->withHeader('Content-Type', 'text/html')
                 ->withStatus(200);
         } catch (\Exception $e) {
@@ -76,7 +76,7 @@ class ControllerUser extends Base
             throw new \Exception($e->getMessage(), 1);
         }
     }
-    public function alterar($request, $response, $args)
+    public function Update($request, $response, $args)
     {
         try {
             $id = $args['id'];
@@ -84,12 +84,21 @@ class ControllerUser extends Base
                 'titulo' => 'Lista de Usuários',
                 'id' => $id
             ];
-            return $this->getTwig()
-                ->render($response, $this->setView('users'), $TemplateData)
-                ->withHeader('Content-Type', 'text/html')
-                ->withStatus(200);
-        } catch (\Exception $e) {
-            throw new \Exception("Restrição: " . $e->getMessage(), );
-        };
+            $form = $request->getParsedBody();
+            $IsUpdate = UpdateQuery::table('users')->where('id', '=', $id)->update($form);
+            if ($IsUpdate) {
+                return $this->Send($response, [
+                    'status' => false,
+                    'msg' => 'Usuário atualizado com sucesso',
+                ], 200);
+            }
+            return $this->Send($response, [
+                'status' => true,
+                'msg' => 'Restrição ao atualizar usuário',
+            ], 500);
+        }
+        catch (\Exception $e) {
+            throw new \Exception("Restrição: " . $e->getMessage(), 1);
+        }  
     }
 }

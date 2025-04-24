@@ -8,14 +8,15 @@ final class Empresa extends AbstractMigration
 {
     public function change(): void
     {
-        $table = $this->table('users', ['id' => false, 'primary_ke'=> ['id']]);
+        $table = $this->table('empresa', ['id' => false, 'primary_key'=> ['id']]);
         $table->addColumn('id', 'biginteger', ['identity' => true, 'null' => false])
-            ->addColumn('empresa', 'text', ['null' => true])
+            ->addColumn('razao_social', 'text', ['null' => true])
+            ->addColumn('nome_fantasia', 'text', ['null' => true])
             ->addColumn('cnpj', 'text', ['null' => true])
-            ->addColumn('endereco', 'text', ['null' => true])
-            ->addColumn('ativo', 'boolean', ['null' => true, 'default' => false])
+            ->addColumn('email', 'text', ['null' => true])
+            ->addColumn('telefone', 'text', ['null' => true])
             ->addColumn('data_cadastro', 'datetime', ['null' => true, 'default' => 'CURRENT_TIMESTAMP'])
-            ->addColumn('data_atualizacao', 'datetime', ['null' => true, 'default' => 'CURRENT_TIMESTAMP'])
+            ->addColumn('data_alteracao', 'datetime', ['null' => true, 'default' => 'CURRENT_TIMESTAMP'])
             ->create();
     }
 }
