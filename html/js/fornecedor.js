@@ -1,4 +1,5 @@
 const Save = document.getElementById("salvar");
+const Delete = document.getElementById("deletar");
 
 async function Insert() {
 try {
@@ -40,6 +41,18 @@ async function Deletar(id) {
 
 
 Save.addEventListener("click", async () => {
+    const response = await Insert();
+
+    if (response.status) {
+        await ControlAlert.SetId('mensagem').Primary("Salvando os Dados...", 2000);
+        await ControlAlert.SetId('mensagem').Sucess('Cadastro realizado!', 1000);
+        ControlAlert.IsRedirect('/fornecedor/lista', 2000);
+    } else {
+        ControlAlert.SetId('mensagem').danger(response.msg)
+    }
+});
+
+Delete.addEventListener("click", async () => {
     const response = await Insert();
 
     if (response.status) {

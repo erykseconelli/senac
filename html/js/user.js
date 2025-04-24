@@ -14,6 +14,17 @@ async function Insert() {
     }
 }
 
+async function Update(id) {
+    const form = document.getElementById("form");
+    const formData = new FormData(form);
+    const options = {
+        method: 'POST',
+        body: formData,
+    }
+    const response = await fetch('/usuario/alterar', options);
+    return await response.json();
+}
+
 async function Deletar(id) {
     const form = document.getElementById("form");
     const formData = new FormData(form);

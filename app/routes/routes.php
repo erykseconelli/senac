@@ -5,9 +5,11 @@ use app\controllers\ControllerUser;
 use app\controllers\ControllerHome;
 use app\controllers\ControllerEmpresa;
 use app\controllers\ControllerFornecedor;
+use app\controllers\ControllerLogin;
 
 
 $app->get('/', ControllerHome::class . ':home');
+$app->get('/login', ControllerLogin::class . ':login');
 // Define app routes. (Usuarios)
 $app->group('/usuario', function (RouteCollectorProxy $group) {
     $group->get('/lista', ControllerUser::class . ':lista');
