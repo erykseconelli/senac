@@ -40,7 +40,7 @@ class ControllerEmpresa extends Base
         try {
             $form = $request->getParsedBody();
             $FieldsAndValues = [
-                'empresa' => $form['empresa'],
+                'empresa_nome' => $form['empresa'],
                 'cnpj' => $form['cnpj'],
                 'endereco' => $form['endereco']
             ];

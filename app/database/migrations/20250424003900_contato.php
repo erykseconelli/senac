@@ -6,19 +6,16 @@ use Phinx\Migration\AbstractMigration;
 
 final class Contato extends AbstractMigration
 {
-    /**
-     * Change Method.
-     *
-     * Write your reversible migrations using this method.
-     *
-     * More information on writing migrations is available here:
-     * https://book.cakephp.org/phinx/0/en/migrations.html#the-change-method
-     *
-     * Remember to call "create()" or "update()" and NOT "save()" when working
-     * with the Table class.
-     */
     public function change(): void
     {
-
+        $table = $this->table('contato', ['id' => false, 'primary_key'=> ['id']]);
+        $table->addColumn('id', 'biginteger', ['identity' => true, 'null' => false])
+            ->addColumn('id_empresa', 'biginteger')
+            ->addColumn('tipo', 'text')
+            ->addColumn('contato', 'text')
+            ->addColumn('data_cadastro', 'datetime', ['null' => true, 'default' => 'CURRENT_TIMESTAMP'])
+            ->addColumn('data_alteracao', 'datetime', ['null' => true, 'default' => 'CURRENT_TIMESTAMP'])
+            ->addForeignKey('id_empresa', 'empresa', 'id', ['delete'=> 'CASCADE', 'update'=> 'CASCADE'])
+            ->create();
     }
 }

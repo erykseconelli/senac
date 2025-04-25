@@ -1,18 +1,18 @@
-<?php
+    <?php
 
-use Slim\Routing\RouteCollectorProxy;
-use app\controllers\ControllerUser;
-use app\controllers\ControllerHome;
-use app\controllers\ControllerEmpresa;
-use app\controllers\ControllerFornecedor;
-use app\controllers\ControllerLogin;
+    use Slim\Routing\RouteCollectorProxy;
+    use app\controllers\ControllerUser;
+    use app\controllers\ControllerHome;
+    use app\controllers\ControllerEmpresa;
+    use app\controllers\ControllerFornecedor;
+    use app\controllers\ControllerLogin;
+    use app\middlewares\Auth;
 
-
-$app->get('/', ControllerHome::class . ':home');
-$app->get('/login', ControllerLogin::class . ':login');
-// Define app routes. (Usuarios)
-$app->group('/usuario', function (RouteCollectorProxy $group) {
-    $group->get('/lista', ControllerUser::class . ':lista');
+    $app->get('/', ControllerHome::class . ':home');
+    $app->get('/login', ControllerLogin::class . ':login');
+    // Define app routes. (Usuarios)
+    $app->group('/usuario', function (RouteCollectorProxy $group) {
+        $group->get('/lista', ControllerUser::class . ':lista')->add(Auth::authenticate());
     $group->get('/cadastro', ControllerUser::class . ':cadastro');
     $group->post('/insert', ControllerUser::class . ':insert');
     $group->get('/alterar/{id}', ControllerUser::class . ':alterar');
