@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 use app\database\builder\SelectQuery;
+use app\database\builder\UpdateQuery;
 
 class ControllerLogin extends Base
 {
@@ -52,6 +53,17 @@ class ControllerLogin extends Base
                     'msg' => 'Usuário não encontrado'
                 ]);
             }
+            if (password_needs_rehash($user['senha'], PASSWORD_DEFAULT)){
+                $fieldsAndValues = [
+                    'senha' => password_hash($senha, PASSWORD_DEFAULT)
+                ];
+                UpdateQuery::table('users')
+                    ->set($senha)
+                    ->where('id', '=', value: $user['id'])
+                    ->update();
+            }
+            
+                        
             // Criar sessão
             session_regenerate_id(true);
             $_SESSION['usuario'] = [
