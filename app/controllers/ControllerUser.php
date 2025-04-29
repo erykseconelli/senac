@@ -46,7 +46,7 @@ class ControllerUser extends Base
                 'email' => $form['email'],
                 'senha' => password_hash($form['senha'], PASSWORD_DEFAULT)
             ];
-            $IsSave = InsertQuery::table('user')->save($FieldsAndValues);
+            $IsSave = InsertQuery::table('users')->save($FieldsAndValues);
             if (! $IsSave) {
                 return $this->Send($response, [
                     'status' => false,
@@ -96,9 +96,8 @@ class ControllerUser extends Base
                 'status' => true,
                 'msg' => 'Restrição ao atualizar usuário',
             ], 500);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new \Exception("Restrição: " . $e->getMessage(), 1);
-        }  
+        }
     }
 }
