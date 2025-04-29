@@ -8,31 +8,40 @@
     use app\controllers\ControllerLogin;
     use app\middlewares\Auth;
 
-    $app->get('/', ControllerHome::class . ':home');
-    $app->get('/login', ControllerLogin::class . ':login');
-    // Define app routes. (Usuarios)
+    // Página inicial (home)
+    $app->get('/', ControllerHome::class . ':home')->add(Auth::authenticate());
+    $app->get('/home', ControllerHome::class . ':home')->add(Auth::authenticate());
+
+    // Logout
+    $app->post('/logout', ControllerLogin::class . ':sair');
+
+    // Login
+    $app->get('/login', ControllerLogin::class . ':login')->add(Auth::authenticate());
+    $app->post('/login/authenticate', ControllerLogin::class . ':authenticate');
+
+    // Usuário
     $app->group('/usuario', function (RouteCollectorProxy $group) {
         $group->get('/lista', ControllerUser::class . ':lista')->add(Auth::authenticate());
-    $group->get('/cadastro', ControllerUser::class . ':cadastro');
-    $group->post('/insert', ControllerUser::class . ':insert');
-    $group->get('/alterar/{id}', ControllerUser::class . ':alterar');
-    $group->post('/deletar', ControllerUser::class . ':deletar');
-});
+        $group->get('/cadastro', ControllerUser::class . ':cadastro');
+        $group->post('/insert', ControllerUser::class . ':insert');
+        $group->get('/alterar/{id}', ControllerUser::class . ':alterar')->add(Auth::authenticate());
+        $group->post('/deletar', ControllerUser::class . ':deletar');
+    });
 
-// Define rotas da Empresa
-$app->group('/empresa', function (RouteCollectorProxy $group) {
-    $group->get('/lista', ControllerEmpresa::class . ':lista');
-    $group->get('/cadastro', ControllerEmpresa::class . ':cadastro');
-    $group->post('/insert', ControllerEmpresa::class . ':insert');
-    $group->get('/alterar/{id}', ControllerEmpresa::class . ':alterar');
-    $group->post('/deletar', ControllerEmpresa::class . ':deletar');
-});
+    // Empresa
+    $app->group('/empresa', function (RouteCollectorProxy $group) {
+        $group->get('/lista', ControllerEmpresa::class . ':lista')->add(Auth::authenticate());
+        $group->get('/cadastro', ControllerEmpresa::class . ':cadastro')->add(Auth::authenticate());
+        $group->post('/insert', ControllerEmpresa::class . ':insert');
+        $group->get('/alterar/{id}', ControllerEmpresa::class . ':alterar')->add(Auth::authenticate());
+        $group->post('/deletar', ControllerEmpresa::class . ':deletar');
+    });
 
-// Define rotas do Fornecedor
-$app->group('/fornecedor', function (RouteCollectorProxy $group) {
-    $group->get('/lista', ControllerFornecedor::class . ':lista');
-    $group->get('/cadastro', ControllerFornecedor::class . ':cadastro');
-    $group->post('/insert', ControllerFornecedor::class . ':insert');
-    $group->get('/alterar/{id}', ControllerFornecedor::class . ':alterar');
-    $group->post('/deletar', ControllerFornecedor::class . ':deletar');
-});
+    // Fornecedor
+    $app->group('/fornecedor', function (RouteCollectorProxy $group) {
+        $group->get('/lista', ControllerFornecedor::class . ':lista')->add(Auth::authenticate());
+        $group->get('/cadastro', ControllerFornecedor::class . ':cadastro')->add(Auth::authenticate());
+        $group->post('/insert', ControllerFornecedor::class . ':insert');
+        $group->get('/alterar/{id}', ControllerFornecedor::class . ':alterar')->add(Auth::authenticate());
+        $group->post('/deletar', ControllerFornecedor::class . ':deletar');
+    });
