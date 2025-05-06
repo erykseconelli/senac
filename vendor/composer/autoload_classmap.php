@@ -956,5 +956,6 @@ return array(
     'app\\database\\builder\\SelectQuery' => $baseDir . '/app/database/builder/SelectQuery.php',
     'app\\database\\builder\\UpdateQuery' => $baseDir . '/app/database/builder/UpdateQuery.php',
     'app\\middlewares\\Auth' => $baseDir . '/app/middlewares/Auth.php',
+    'app\\traits\\SerialService' => $baseDir . '/app/traits/SerialService.php',
     'app\\traits\\Template' => $baseDir . '/app/traits/Template.php',
 );

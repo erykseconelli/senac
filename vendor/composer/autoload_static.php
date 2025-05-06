@@ -1160,6 +1160,7 @@ class ComposerStaticInit05a20d277857b811c4b34523b1da7503
         'app\\database\\builder\\SelectQuery' => __DIR__ . '/../..' . '/app/database/builder/SelectQuery.php',
         'app\\database\\builder\\UpdateQuery' => __DIR__ . '/../..' . '/app/database/builder/UpdateQuery.php',
         'app\\middlewares\\Auth' => __DIR__ . '/../..' . '/app/middlewares/Auth.php',
+        'app\\traits\\SerialService' => __DIR__ . '/../..' . '/app/traits/SerialService.php',
         'app\\traits\\Template' => __DIR__ . '/../..' . '/app/traits/Template.php',
     );
 

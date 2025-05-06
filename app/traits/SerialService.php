@@ -84,7 +84,7 @@ trait SerialService
         if ($ret !== 0) {
             throw new \RuntimeException('Restrição ao configurar porta: ' . implode("\n", $out));
         }
-
+        $fp = @fopen($this->port, 'r+');
         # 4. Garante que a escrita não bloqueie indefinidiamente
         stream_set_blocking($fp, true);
         stream_set_timeout($fp, $this->timeout);
@@ -128,7 +128,7 @@ trait SerialService
         stream_set_blocking($fp, true);
         stream_set_timeout($fp, $this->timeout);
         # 6. Envia o comando "ON" seguido de nova linha
-        $byte = fwrite($fp, "ON\n");
+        $bytes = fwrite($fp, "ON\n");
         # 7. Fecha imediatamente a porta após escrita
         fclose($fp);
         # 8. Verifica se alguma byte foi escrito com sucesso
