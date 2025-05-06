@@ -6,14 +6,14 @@
 
 <div class="col-12">
     <br><label for="">Temperatura:</label>
-    <div class="d-none d-lg-block"id="temperatura">juninn</div>
+    <div class="d-none d-lg-block" id="temperatura">juninn</div>
     <div class="d-lg-none" id="temperatura">juninn</div>
-    
+
     <label for="">Umidade:</label>
     <div class="d-none d-lg-block" id="umidade">junin4n</div>
-    <div class="d-lg-none "id="umidade">juninn</div>
+    <div class="d-lg-none " id="umidade">juninn</div>
     <br>
-    <button type="button" class="btn btn-success">Ligar</button>
+    <button type="button" class="btn btn-success" id="poweron">Ligar</button>
     <button type="button" class="btn btn-danger">Desligar</button>
 
 </div>
@@ -22,4 +22,5 @@
 {% endblock %}
 {% block script %}
 {% include "script.html" %}
+<script src="/js/home.js"></script>
 {% endblock %}

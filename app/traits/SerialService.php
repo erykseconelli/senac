@@ -11,8 +11,8 @@ trait SerialService
     # Inicializa as configurações básicas de comunicação serial. Deve-se atribuir valores a $port e #timeout amtes de usar os métodos.
     public function __construct()
     {
-        $this->port = SERIAL_CONFIG['port'];
-        $this->timeout = SERIAL_CONFIG['port'];
+        $this->port = (string)SERIAL_CONFIG['port'];
+        $this->timeout = (int)SERIAL_CONFIG['timeout'];
     }
     # Abre a portal serial, lê uma linha JSON enviada pelo Arduino e retorna os dados decodificados como array associativo.
     public function read(): array
@@ -102,8 +102,8 @@ trait SerialService
     # Envia comando para ligar o registro de água no Arduino. bool|null Retorna true em sucesso, false em falha ou null se não suportados.
     public function TurnOnRegistration(): ?bool
     {
-        # 1. Carrega configurações da porta serial
-        $cfg = SERIAL_CONFIG('serial');
+        # 1. Recupera configurações completas para serial.
+        $cfg = SERIAL_CONFIG['serial'];
         # 2. Monta comando de configuração de porta conforme sistema
         # No Linux/WSL, configuramos via 'stty'
         $cmd = sprintf(

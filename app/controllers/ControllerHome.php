@@ -18,4 +18,13 @@ class ControllerHome extends Base
             throw new \Exception("Restrição: " . $e->getMessage(), 1);
         }
     }
+    public function poweron($request, $response)
+    {
+        try {
+            $this->TurnOnRegistration();
+            echo 'oi';
+            die;
+        } catch (\Exception $e) {
+        }
+    }
 }
