@@ -1,27 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tropa do 7</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet"> <!-- Para ícones -->
+    <style>
+        /* Alterando cor de fundo e fontes para um visual mais moderno */
+        .navbar {
+            background-color: #1a73e8;  /* Azul mais vivo */
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white !important;
+        }
+        .navbar-nav .nav-link {
+            font-size: 1.1rem;
+            padding: 12px 18px;
+            color: white !important;
+            transition: background-color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            background-color: #0d58b2;  /* Tom mais escuro de azul no hover */
+            border-radius: 5px;
+        }
+
+        .dropdown-menu {
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .dropdown-item {
+            color: #007bff !important;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+        }
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+            color: #0056b3 !important;
+        }
+
+        #btn_menu_sair {
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            margin-left: 15px;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        #btn_menu_sair:hover {
+            background-color: #c82333;
+        }
+
+        /* Melhorar a aparência do menu em dispositivos móveis */
+        .navbar-toggler-icon {
+            background-color: white;
+        }
+
+        /* Ícones do menu */
+        .nav-item i {
+            margin-right: 8px;  /* Espaço entre o ícone e o texto */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar com as melhorias -->
 <nav class="navbar navbar-expand-lg bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Tropa do 7</a>
+    <a class="navbar-brand" href="/">SENAC</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+          <a class="nav-link active" aria-current="page" href="/"><i class="fa fa-home"></i> Início</a>
         </li>
-     
+
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Listas
-          </a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-list"></i> Listas</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/usuario/lista">Usuario</a></li>
-            <li><a class="dropdown-item" href="/empresa/lista">Empresa</a></li>
-            <li><a class="dropdown-item" href="/fornecedor/lista">Fornecedor</a></li>
+            <li><a class="dropdown-item" href="/usuario/lista"><i class="fa fa-user"></i> Usuário</a></li>
+            <li><a class="dropdown-item" href="/empresa/lista"><i class="fa fa-building"></i> Empresa</a></li>
+            <li><a class="dropdown-item" href="/fornecedor/lista"><i class="fa fa-truck"></i> Fornecedor</a></li>
           </ul>
         </li>
       </ul>
     </div>
-    <button type="button" id="btn_menu_sair" class="btn btn-danger col-md-0,1">Sair</button>
+    <button type="button" id="btn_menu_sair" class="btn">Sair</button>
   </div>
 </nav>
+
+<!-- Scripts Bootstrap e Font Awesome -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

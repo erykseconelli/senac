@@ -24,7 +24,9 @@ trait SerialService
         dio_fcntl($fd, F_SETFL, 0);
         // Laço de leitura até obter dados
         $data = '';
-        $data = @dio_read($fd, 256);
+        $data = @dio_read($fd, 128); // Lê até 4KB de dados
+        var_dump($data); // Debug: mostra os dados recebidos
+        die;
         usleep(100_000); // 0.1s de espera se sem dados
 
         // Fecha a porta serial
