@@ -54,7 +54,7 @@
             </div>
             <div class="card-body">
                 <div class="mb-4">
-                    <label for="umidade" class="form-label">Umidade Atual:</label>
+                    <label for="umidade" class="form-label" id="visor">Umidade Atual:</label>
                     <div id="visor" class="d-block">
                         60%  <!-- Exemplo de umidade inicial -->
                     </div>
@@ -69,11 +69,6 @@
                 <div class="d-flex justify-content-between mt-4">
                     <button type="button" class="btn btn-success" id="poweron">Ligar</button>
                     <button type="button" class="btn btn-danger" id="poweroff">Desligar</button>
-                </div>
-
-                <!-- Mensagem de atualização da umidade -->
-                <div id="visor-updating" class="d-none">
-                    Atualizando umidade...
                 </div>
             </div>
         </div>
