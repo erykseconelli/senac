@@ -16,6 +16,7 @@
     $app->post('/logout', ControllerLogin::class . ':sair');
     $app->group('/home', function (RouteCollectorProxy $group) {
         $group->post('/poweron', ControllerHome::class . ':poweron');
+        $group->post('/poweroff', ControllerHome::class . ':poweroff');
     });
 
     // Login
